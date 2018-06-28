@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Formulário</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+	<div class="container">
+		<form method="post" action="/pessoa/salvar"
+			enctype="multipart/form-data" th:object="${pessoa}">
+			<input type="hidden" th:field="*{id}">
+			<div class="form-group">
+				<label for="nome">Nome</label> <input type="text"
+					class="form-control" id="nome" placeholder="Digite o nome"
+					th:field="*{nome}">
+			</div>
+			<div class="form-group">
+				<label for="time">Time</label> <input type="text"
+					class="form-control" id="time" placeholder="Digite o time"
+					th:field="*{time}">
+			</div>
+
+			<div class="form-group">
+				<label for="time">Data nascimento</label> <input type="text"
+					class="form-control" id="dataNascimento"
+					placeholder="Digite a data de nascimento"
+					th:field="*{dataNascimento}">
+			</div>
+			<div class="form-group">
+				<label for="username">Login</label> <input type="text"
+					class="form-control" id="username" placeholder="Digite o login"
+					th:field="*{username}">
+			</div>
+			<div class="form-group">
+				<label for="password">Senha</label> <input type="password"
+					class="form-control" id="time" placeholder="Digite a sua senha"
+					th:field="*{password}">
+			</div>
+			<div class="form-group">
+				Selecione a imagem: <input type="file" name="imagem">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+			<a href="/pessoa/listar"><button type="button"
+					class="btn btn-primary">Lista de pessoas</button></a>
+
+		</form>
+	</div>
+	<script src="/js/bootstrap.min.js">
+		
+	</script>
+
+</body>
+</html>

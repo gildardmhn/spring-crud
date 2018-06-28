@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+<meta charset="UTF-8">
+<title>Listagem</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="alert alert-success" role="alert" th:if=${!#strings.isEmpty(mensagem)}>
+	<span th:text="${mensagem}"></span>
+</div>
+<div class="container">	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">Id</th>
+	      <th scope="col">Nome</th>
+	      <th scope="col">Time</th>
+	      <th scope="col">Data</th>
+	      <th scope="col">Foto</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="pessoa : ${todasAsPessoas}">
+	      <td th:text="${pessoa.id}"> </td>
+	      <td th:text="${pessoa.nome}"> </td>
+	      <td th:text="${pessoa.time}"> </td>
+	      <td th:text="${{pessoa.dataNascimento}}"> </td>
+	      <td> <img th:src="@{'/images/'+${pessoa.nome}+.png}"  /> </td>
+	      
+	      <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/pessoa/atualizar/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-primary">Atualizar</button></a></td>
+	      <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/pessoa/excluir/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-danger">Excluir</button></a></td>
+	    
+	    </tr>
+	  </tbody>
+	</table>
+	<div class="container">
+		<a href="/pessoa/formulario"><button type="button" class="btn btn-primary">Novo</button></a>
+	</div>
+</div>
+<script src="/js/bootstrap.min.js">  </script>
+
+</body>
+</html>
